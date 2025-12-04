@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TChallenge - Discover Challenges</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 md:px-10 lg:px-20 xl:px-40 py-3 fixed top-0 left-0 right-0 z-50 bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_543"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">TChallenge</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal" href="#">Discover</a>
+<a class="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">My Challenges</a>
+<a class="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">About Us</a>
+<a class="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Leaderboard</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="hidden md:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 hover:bg-white/20 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Login</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Sign Up</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 hidden md:block" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmCR2pSEyRy-F4sBdrrR1n7Eni5lKU7_Mj7QHGcjJ1TbQBcB0f8cq3AC1CgB2thNGd4kjM4pi2gp6UQ6zp10I8ZdyMfgxDEYe_eIuEMqWI85alpIu8ZmEWb2pxPzJ3K6BWdE-LM3mmBtfPQPi0VEWq3M1VnEmwjUccMeO-1Cl1xRu1MvbmJ7hDNBVFBbH36bXBpW8mx807CTsWeNi4XjWqlrxR9xAc6MEhRDowvM8QSpNilJa_5adEzjJgc_w69nOBLvkYrmodR54");'></div>
+</div>
+</header>
+<main class="flex flex-col flex-1 pt-[68px]">
+<div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-10">
+<div class="@container">
+<div class="w-full">
+<div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-start justify-end px-4 pb-10 @[480px]:px-10" data-alt="A group of diverse volunteers planting trees together in a sunny field, smiling." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcjtIvZ3I0MZ2n9q51RAgXzLONZwpAkXJEbOzP6kM6mVTpZxWNKBw_NRaFut-h8KJTwpxaQsUgf8Z9oxq5_1zWRiOFe_d0kcvIW67yogpJqR58ZsaGanT37dOoI0NemyU6lTRrvPiwOILUOnuUl7ket3OCvoEdMxaapBCmhGBSwQazaQqqURlViMMP3c35lNWJhBgIpfUt9pxT0VvR0k5cFHj4mTtWn7h430BA4wRd61eLblLysby2nQvNBABGEI38Me-mXab5LDo");'>
+<div class="flex flex-col gap-2 text-left max-w-2xl">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">Your Action, Their Future.</h1>
+<h2 class="text-white/90 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">Join a community making a real difference. Find a challenge and start your solidarity journey today.</h2>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
+<span class="truncate">Find Your Challenge</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-white/10 bg-white/5">
+<p class="text-white/80 text-base font-medium leading-normal">Volunteers Engaged</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">12,450</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-white/10 bg-white/5">
+<p class="text-white/80 text-base font-medium leading-normal">Trees Planted</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">8,900</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-white/10 bg-white/5">
+<p class="text-white/80 text-base font-medium leading-normal">Meals Donated</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">25,600</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 border border-white/10 bg-white/5">
+<p class="text-white/80 text-base font-medium leading-normal">Hours Volunteered</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">40,200</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Current &amp; Upcoming Challenges</h2>
+<div class="flex gap-3 px-4 flex-wrap">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 hover:bg-primary/30 text-primary px-4 transition-colors">
+<p class="text-sm font-bold leading-normal">All</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Solidarity</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Environment</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Education</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Health</p>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+<div class="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-4 overflow-hidden">
+<div class="aspect-video w-full rounded-lg bg-cover bg-center" data-alt="Volunteers sorting canned goods at a food bank." style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8xz4kpvbBvDCdWtQLLKiWUSrfm_D0Nu3acH6bqsmp2MRb7cvOGoLvEANlOk0nFNc1ZJ2o_67znD68mK5UyhJaha8Bnfx2HzFlIYojoiMc5D6s26XrlNxqJ9ThV06LnNAvgoyF2FAcHNiE0yqcKUQdqWvkws9LD-QH_3U5c2iIWyOEy3mbPAaVHU4KM_BUHrpVr-Zr-Os8v09AEwOpQSouxA3s4Otl5dz4IXzfGsYVwxgYRjj2hRWITJNXZjsKKZ3hgDXn74xjIZc')"></div>
+<div class="flex flex-col gap-3 px-2">
+<div class="flex items-center gap-2"><div class="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">Solidarity</div></div>
+<h3 class="text-white font-bold text-lg">Community Food Drive</h3>
+<p class="text-white/70 text-sm">Help us collect non-perishable food items for local families in need. Your contribution can make a huge difference.</p>
+<div class="w-full bg-black/20 rounded-full h-2 my-2"><div class="bg-primary h-2 rounded-full" style="width: 75%"></div></div>
+<div class="flex items-center justify-between text-sm text-white/70"><span>1,500/2,000 kg collected</span><span>12 days left</span></div>
+<button class="flex w-full mt-4 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 hover:bg-primary/30 transition-colors text-primary text-sm font-bold leading-normal tracking-[0.015em]"><span class="truncate">View Details</span></button>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-4 overflow-hidden">
+<div class="aspect-video w-full rounded-lg bg-cover bg-center" data-alt="A clean beach with clear blue water and people picking up trash in the background." style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnjHfzlIlKUrXRXbn4kYrpW8Q9blbgWxq8GZTF_111Kvyv83CFfcpprKgttc5yxLTBTEkUOYLX1MZQobqA4ciLtD8qwbo3RUD4ixc3ETWo3KIP__xbm4A6O7EIAPUUfhK1uvzjXH4VehQXd7m-He_uCKOauw25A6J-aQZFsMGlO-lP1vrwS3Is44jh8V15BthAzZwnNlJ8O_WgVQEr8GBOgchcqfoNQab4-ra66J2rQkWsz7h6GOjG9awyjpJj9pV0mhdBJcW_pbg')"></div>
+<div class="flex flex-col gap-3 px-2">
+<div class="flex items-center gap-2"><div class="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">Environment</div></div>
+<h3 class="text-white font-bold text-lg">Coastal Cleanup Day</h3>
+<p class="text-white/70 text-sm">Join us for a day of cleaning our beautiful beaches. Let's protect marine life and preserve our coastline.</p>
+<div class="w-full bg-black/20 rounded-full h-2 my-2"><div class="bg-primary h-2 rounded-full" style="width: 40%"></div></div>
+<div class="flex items-center justify-between text-sm text-white/70"><span>40/100 volunteers</span><span>Starts in 3 days</span></div>
+<button class="flex w-full mt-4 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark hover:bg-primary/90 transition-colors text-sm font-bold leading-normal tracking-[0.015em]"><span class="truncate">Join Now</span></button>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-4 overflow-hidden">
+<div class="aspect-video w-full rounded-lg bg-cover bg-center" data-alt="A child smiling while reading a book in a brightly lit classroom." style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBW8BPE29SdEOTstE9YP_WcBTvFam08oYW-mFbNHQruyS4MU1rYDb4uLhh40nk4N8weDAteTuNl5qIFzndK7-WkNU0dJn0IzXiUfkKN4Y0aIVHt-5zsRugboAMP477ABvEZGhj2JOdHOhMbFinxBotw1Y_7FdRXncqBHYRF8U0bkgyLJdTC7Niz93MkbucpZcomb9vNDp2B6wOYKzRdldJ13o3Oq3w-UDlpzYcIDJIz6B_N2XUSqHMIw95T22drLGm90PK26uzovlg')"></div>
+<div class="flex flex-col gap-3 px-2">
+<div class="flex items-center gap-2"><div class="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">Education</div></div>
+<h3 class="text-white font-bold text-lg">Mentor a Student</h3>
+<p class="text-white/70 text-sm">Become a mentor and guide a young student. Share your knowledge and inspire the next generation of leaders.</p>
+<div class="w-full bg-black/20 rounded-full h-2 my-2"><div class="bg-primary h-2 rounded-full" style="width: 60%"></div></div>
+<div class="flex items-center justify-between text-sm text-white/70"><span>30/50 mentors</span><span>Ongoing</span></div>
+<button class="flex w-full mt-4 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 hover:bg-primary/30 transition-colors text-primary text-sm font-bold leading-normal tracking-[0.015em]"><span class="truncate">View Details</span></button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 py-10">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4">Stories from Our Community</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+<div class="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-8">
+<p class="text-white/90">"Participating in the food drive was an incredibly rewarding experience. It's amazing to see how a small action can have such a big impact on your own community. TChallenge made it so easy to get involved."</p>
+<div class="flex items-center gap-4 pt-2">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile picture of John Doe, a smiling man with a beard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz0lYer12t8NkuJsZtUUacILObIQhEG7pEw6X47wPRCRsTnr2GVGp-4vJuRMZ7vH5TIHqyd_FZoYwCkKD2PhWuTKOm0c-YbUZ4BMZf_HGYMCX6nTlGKrUT7TfYuS2yVwZoRlVdbWbahf1Dn5_gzgO3r9p8Wv3r69bFwNc_VaTN6G6qzvGHD7ahEn_6zXCxwKRSsm0DzgvBIyCwwNUXdNgm9DcPP6WXSOFnBl_IP74ZUaPt7ryKrqkEFrUWlo6q5GysWqmTD5aa9So"/>
+<div>
+<p class="font-bold text-white">John Doe</p>
+<p class="text-sm text-white/70">Volunteer</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-8">
+<p class="text-white/90">"I never thought I could contribute to environmental causes, but the coastal cleanup challenge was so well-organized and fun. I met great people and we made a real difference together. Can't wait for the next one!"</p>
+<div class="flex items-center gap-4 pt-2">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Profile picture of Jane Smith, a smiling woman with glasses." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZw4lHxf1QRzH1eZEl-okhuO_JdCNfV_dUgKr9yrAvaYoLsE8qDvCIqOpDuvab_Nke4w_mnzkX3wOWr0H1ljYemSunaY5oQzBSnvvZU58pc4v9kExm6p10pxqbM0x7LsWSEh3mdZ-qoizJhj6mQC-bGZE7yNT9IBbEV9wtThn8-74EEaV_n5j97ZO4ph-VgufuzYm_vbhHVSIpgK0oFdT_uF6YZY5n0qowHi0JJZp3W_32Vs021CnX8V7twoD3k1JSrbp5xCgAMZA"/>
+<div>
+<p class="font-bold text-white">Jane Smith</p>
+<p class="text-sm text-white/70">Challenge Participant</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="bg-background-dark border-t border-white/10">
+<div class="max-w-[1200px] mx-auto px-4 md:px-10 lg:px-20 xl:px-40 py-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543_footer)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_543_footer"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">TChallenge</h2>
+</div>
+<p class="text-white/70 text-sm">Join a community making a real difference.</p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="text-white/70 hover:text-white transition text-sm" href="#">About Us</a></li>
+<li><a class="text-white/70 hover:text-white transition text-sm" href="#">Discover</a></li>
+<li><a class="text-white/70 hover:text-white transition text-sm" href="#">FAQ</a></li>
+<li><a class="text-white/70 hover:text-white transition text-sm" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Legal</h4>
+<ul class="space-y-2">
+<li><a class="text-white/70 hover:text-white transition text-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-white/70 hover:text-white transition text-sm" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Follow Us</h4>
+<div class="flex items-center gap-4">
+<a class="text-white/70 hover:text-white transition" href="#"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+<a class="text-white/70 hover:text-white transition" href="#"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+<a class="text-white/70 hover:text-white transition" href="#"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/50">
+                            © 2024 TChallenge. All rights reserved.
+                        </div>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body></html>
