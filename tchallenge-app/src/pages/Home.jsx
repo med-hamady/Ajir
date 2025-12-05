@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 
 const Home = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Tous');
+
   // Mock data for challenges
   const challenges = [
     {
@@ -97,70 +100,87 @@ const Home = () => {
 
             {/* Filter Buttons */}
             <div className="flex gap-3 px-4 flex-wrap">
-              <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 hover:bg-primary/30 text-primary px-4 transition-colors">
-                <p className="text-sm font-bold leading-normal">Tous</p>
-              </button>
-              <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Solidarité</p>
-              </button>
-              <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Environnement</p>
-              </button>
-              <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Éducation</p>
-              </button>
-              <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Santé</p>
-              </button>
+              {['Tous', 'Solidarité', 'Environnement', 'Éducation', 'Santé'].map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg px-4 transition-colors ${
+                    selectedCategory === category
+                      ? 'bg-primary/20 hover:bg-primary/30 text-primary'
+                      : 'bg-white/10 hover:bg-white/20 text-white'
+                  }`}
+                >
+                  <p className={`text-sm leading-normal ${selectedCategory === category ? 'font-bold' : 'font-medium'}`}>
+                    {category}
+                  </p>
+                </button>
+              ))}
             </div>
 
             {/* Challenge Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-              {challenges.map((challenge) => (
-                <Card key={challenge.id} className="flex flex-col gap-4 p-4 overflow-hidden">
-                  <div
-                    className="aspect-video w-full rounded-lg bg-cover bg-center"
-                    style={{ backgroundImage: `url('${challenge.image}')` }}
-                  />
-                  <div className="flex flex-col gap-3 px-2">
-                    <div className="flex items-center gap-2">
-                      <div className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">
-                        {challenge.category}
-                      </div>
-                    </div>
-                    <h3 className="text-white font-bold text-lg">{challenge.title}</h3>
-                    <p className="text-white/70 text-sm">{challenge.description}</p>
+            {(() => {
+              const filteredChallenges = selectedCategory === 'Tous'
+                ? challenges
+                : challenges.filter(c => c.category === selectedCategory);
 
-                    {/* Progress Bar */}
-                    <div className="w-full bg-black/20 rounded-full h-2 my-2">
+              return filteredChallenges.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+                  {filteredChallenges.map((challenge) => (
+                    <Card key={challenge.id} className="flex flex-col gap-4 p-4 overflow-hidden">
                       <div
-                        className="bg-primary h-2 rounded-full"
-                        style={{ width: `${challenge.progress}%` }}
+                        className="aspect-video w-full rounded-lg bg-cover bg-center"
+                        style={{ backgroundImage: `url('${challenge.image}')` }}
                       />
-                    </div>
+                      <div className="flex flex-col gap-3 px-2">
+                        <div className="flex items-center gap-2">
+                          <div className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">
+                            {challenge.category}
+                          </div>
+                        </div>
+                        <h3 className="text-white font-bold text-lg">{challenge.title}</h3>
+                        <p className="text-white/70 text-sm">{challenge.description}</p>
 
-                    {/* Challenge Stats */}
-                    <div className="flex items-center justify-between text-sm text-white/70">
-                      <span>
-                        {challenge.collected ? `${challenge.collected}/${challenge.goal} ${challenge.unit} collectés` :
-                         challenge.volunteers ? `${challenge.volunteers}/${challenge.goal} volontaires` :
-                         `${challenge.mentors}/${challenge.goal} mentors`}
-                      </span>
-                      <span>{challenge.daysLeft ? `${challenge.daysLeft} jours restants` : challenge.startsIn || challenge.status}</span>
-                    </div>
+                        {/* Progress Bar */}
+                        <div className="w-full bg-black/20 rounded-full h-2 my-2">
+                          <div
+                            className="bg-primary h-2 rounded-full"
+                            style={{ width: `${challenge.progress}%` }}
+                          />
+                        </div>
 
-                    <Link to={`/challenge/${challenge.id}`}>
-                      <Button
-                        variant={challenge.id === 2 ? "primary" : "ghost"}
-                        className="w-full mt-4"
-                      >
-                        {challenge.id === 2 ? 'Rejoindre Maintenant' : 'Voir les Détails'}
-                      </Button>
-                    </Link>
+                        {/* Challenge Stats */}
+                        <div className="flex items-center justify-between text-sm text-white/70">
+                          <span>
+                            {challenge.collected ? `${challenge.collected}/${challenge.goal} ${challenge.unit} collectés` :
+                             challenge.volunteers ? `${challenge.volunteers}/${challenge.goal} volontaires` :
+                             `${challenge.mentors}/${challenge.goal} mentors`}
+                          </span>
+                          <span>{challenge.daysLeft ? `${challenge.daysLeft} jours restants` : challenge.startsIn || challenge.status}</span>
+                        </div>
+
+                        <Link to={`/challenge/${challenge.id}`}>
+                          <Button
+                            variant={challenge.id === 2 ? "primary" : "ghost"}
+                            className="w-full mt-4"
+                          >
+                            {challenge.id === 2 ? 'Rejoindre Maintenant' : 'Voir les Détails'}
+                          </Button>
+                        </Link>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-16 px-4">
+                  <div className="text-gray-400 text-lg">
+                    Aucun défi disponible dans cette catégorie pour le moment.
                   </div>
-                </Card>
-              ))}
-            </div>
+                  <p className="text-gray-500 text-sm mt-2">
+                    Revenez bientôt ou explorez d'autres catégories !
+                  </p>
+                </div>
+              );
+            })()}
           </div>
 
           {/* Testimonials Section */}
