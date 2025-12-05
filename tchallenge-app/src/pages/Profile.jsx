@@ -13,6 +13,8 @@ const Profile = () => {
   const [badges, setBadges] = useState([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [showUrlInput, setShowUrlInput] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -130,6 +132,36 @@ const Profile = () => {
     }
   };
 
+  const updateAvatarUrl = async () => {
+    if (!imageUrl.trim()) {
+      alert('Veuillez entrer une URL d\'image valide');
+      return;
+    }
+
+    try {
+      setUploading(true);
+
+      // Update profile with new avatar URL
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ avatar_url: imageUrl.trim() })
+        .eq('id', user.id);
+
+      if (updateError) throw updateError;
+
+      // Update local state
+      setProfile({ ...profile, avatar_url: imageUrl.trim() });
+      setShowUrlInput(false);
+      setImageUrl('');
+      alert('✅ Photo de profil mise à jour avec succès !');
+    } catch (error) {
+      console.error('Error updating avatar:', error);
+      alert(`Erreur: ${error.message || 'Erreur inconnue'}`);
+    } finally {
+      setUploading(false);
+    }
+  };
+
   if (authLoading || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -199,6 +231,49 @@ const Profile = () => {
                 {uploading && (
                   <p className="text-primary text-sm mb-2">Téléchargement en cours...</p>
                 )}
+
+                {/* Option URL d'image */}
+                {!showUrlInput ? (
+                  <button
+                    onClick={() => setShowUrlInput(true)}
+                    className="text-primary text-sm hover:underline mb-2"
+                  >
+                    Ou utiliser une URL d'image
+                  </button>
+                ) : (
+                  <div className="w-full max-w-[480px] mb-4 space-y-2">
+                    <input
+                      type="url"
+                      value={imageUrl}
+                      onChange={(e) => setImageUrl(e.target.value)}
+                      placeholder="https://exemple.com/photo.jpg"
+                      className="w-full px-4 py-2 bg-[#102216] border border-[#3b5443] rounded-lg text-white focus:outline-none focus:border-primary"
+                      disabled={uploading}
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        variant="primary"
+                        onClick={updateAvatarUrl}
+                        disabled={uploading}
+                        className="flex-1"
+                      >
+                        Mettre à jour
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          setShowUrlInput(false);
+                          setImageUrl('');
+                        }}
+                        disabled={uploading}
+                        className="flex-1"
+                      >
+                        Annuler
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
                 <p className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">
                   {profile.full_name}
                 </p>
