@@ -12,6 +12,7 @@ const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [badges, setBadges] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -65,6 +66,52 @@ const Profile = () => {
     }
   };
 
+  const uploadAvatar = async (event) => {
+    try {
+      setUploading(true);
+
+      if (!event.target.files || event.target.files.length === 0) {
+        return;
+      }
+
+      const file = event.target.files[0];
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}-${Math.random()}.${fileExt}`;
+      const filePath = `avatars/${fileName}`;
+
+      // Upload image to Supabase Storage
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(filePath);
+
+      const avatarUrl = urlData.publicUrl;
+
+      // Update profile with new avatar URL
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ avatar_url: avatarUrl })
+        .eq('id', user.id);
+
+      if (updateError) throw updateError;
+
+      // Update local state
+      setProfile({ ...profile, avatar_url: avatarUrl });
+      alert('Photo de profil mise à jour avec succès !');
+    } catch (error) {
+      console.error('Error uploading avatar:', error);
+      alert('Erreur lors du téléchargement de la photo. Veuillez réessayer.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   if (authLoading || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -110,10 +157,30 @@ const Profile = () => {
             {/* Profile Card */}
             <Card className="p-4">
               <div className="flex flex-col items-center text-center">
-                <div
-                  className="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 mb-4"
-                  style={{ backgroundImage: profile.avatar_url ? `url('${profile.avatar_url}')` : 'linear-gradient(135deg, #13ec5b 0%, #0a7f2f 100%)' }}
-                />
+                <div className="relative group">
+                  <div
+                    className="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 mb-4"
+                    style={{ backgroundImage: profile.avatar_url ? `url('${profile.avatar_url}')` : 'linear-gradient(135deg, #13ec5b 0%, #0a7f2f 100%)' }}
+                  />
+                  <label
+                    htmlFor="avatar-upload"
+                    className="absolute bottom-4 right-0 bg-primary hover:bg-primary/80 text-white rounded-full p-2 cursor-pointer transition-all shadow-lg"
+                    title="Changer la photo"
+                  >
+                    <span className="material-symbols-outlined text-xl">photo_camera</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="avatar-upload"
+                    accept="image/*"
+                    onChange={uploadAvatar}
+                    disabled={uploading}
+                    className="hidden"
+                  />
+                </div>
+                {uploading && (
+                  <p className="text-primary text-sm mb-2">Téléchargement en cours...</p>
+                )}
                 <p className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">
                   {profile.full_name}
                 </p>
