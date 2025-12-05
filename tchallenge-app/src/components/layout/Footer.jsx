@@ -87,7 +87,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/50">
-          © 2024 TChallenge. Tous droits réservés.
+          © 2025 TChallenge. Tous droits réservés.
         </div>
       </div>
     </footer>
