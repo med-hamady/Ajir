@@ -75,16 +75,29 @@ const Profile = () => {
       }
 
       const file = event.target.files[0];
+
+      // Vérifier la taille du fichier (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('La photo est trop grande. Taille maximale : 5 MB');
+        setUploading(false);
+        return;
+      }
+
       const fileExt = file.name.split('.').pop();
       const fileName = `${user.id}-${Math.random()}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      const filePath = `${fileName}`;
 
       // Upload image to Supabase Storage
-      const { error: uploadError } = await supabase.storage
+      const { data: uploadData, error: uploadError } = await supabase.storage
         .from('avatars')
         .upload(filePath, file, { upsert: true });
 
-      if (uploadError) throw uploadError;
+      if (uploadError) {
+        console.error('Upload error:', uploadError);
+        alert(`Erreur d'upload: ${uploadError.message}\n\nAssurez-vous que le bucket 'avatars' existe dans Supabase Storage et qu'il est public.`);
+        setUploading(false);
+        return;
+      }
 
       // Get public URL
       const { data: urlData } = supabase.storage
@@ -99,14 +112,19 @@ const Profile = () => {
         .update({ avatar_url: avatarUrl })
         .eq('id', user.id);
 
-      if (updateError) throw updateError;
+      if (updateError) {
+        console.error('Update error:', updateError);
+        alert(`Erreur de mise à jour du profil: ${updateError.message}`);
+        setUploading(false);
+        return;
+      }
 
       // Update local state
       setProfile({ ...profile, avatar_url: avatarUrl });
-      alert('Photo de profil mise à jour avec succès !');
+      alert('✅ Photo de profil mise à jour avec succès !');
     } catch (error) {
       console.error('Error uploading avatar:', error);
-      alert('Erreur lors du téléchargement de la photo. Veuillez réessayer.');
+      alert(`Erreur: ${error.message || 'Erreur inconnue'}`);
     } finally {
       setUploading(false);
     }
