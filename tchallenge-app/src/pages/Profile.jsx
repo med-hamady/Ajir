@@ -1,34 +1,93 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const [activeTab, setActiveTab] = useState('badges');
+  const [profile, setProfile] = useState(null);
+  const [badges, setBadges] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const userProfile = {
-    name: 'Elara Vance',
-    mission: 'My Mission: Fostering community through collective action and sustainable living.',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPtLAZ4my7jkYaZINv5XNuhVyNgoNtfXlraZtDRYPpXlVE160HFnHl72hjbUvHM90zdqqXa73lgzbNNz2FoZnQLQIHH9OCa18f37qClxAzQ8w2R3Fh3ryS106WeKke2fKikd5EKagy-RzfGTxTCu9p_gP-GaXiaagjVCD4kc02mMvRsz89QbB21XwQewP_d_w-JWKdGxm8dFP8p0g0Nrn_H7k4DB9PgeYSmHqCAikj2OW8oRj0QBymOZ2ziC0zGdz6XAHEnBd6HYA',
-    totalPoints: 12450,
-    challengesCompleted: 28,
-    badgesEarned: 6,
-    nextLevel: 'Solidarity Star',
-    pointsToNextLevel: 550,
-    levelProgress: 75
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/login');
+      return;
+    }
+
+    if (user) {
+      loadProfile();
+      loadBadges();
+    }
+  }, [user, authLoading, navigate]);
+
+  const loadProfile = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (error) throw error;
+      setProfile(data);
+    } catch (error) {
+      console.error('Error loading profile:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const badges = [
-    { name: 'Solidarité écologique', earned: '15/03/24', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuANhoVnn-It5soFBik7nRmtdUG8d0prj7c7kw4qgNbQ2pBx_JXX9sJ_rbKNqsSW6WrsAPtl2Cs0ZasByMst6a-c_06WY5JlskpM856pOUOMUhjRIKUT0PuqUaHUbIaCjNjorP_tW9WPzcv_8TAHVp7Z5Johza3iwsP4-HCkfiTLbEQE6I68Qib2JpMr94tGOCPCXKyDBd8vdJgiNbPbVrWdOVh5kiFwLS4f-Um3O5q2jVAfIQcO9UXNUKmWd2s4A1K6c9Gu0JOa7TI' },
-    { name: 'Champion de l\'éducation', earned: '02/02/24', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuABYkfkTgwWFBI3XKs7OqMoGQCZfQAfremYuqATp5sIS6nCeJRG_oeEHsKYLABHvBK9nN5JCKeFALZ309DAnQOeXJQ5wfvBckaCwgoC_zgEmdhzns5E1y7_dQkjAP8pvJCt80O3sArD03gmDtMJxd9TIUtbdGAHGJYq6l7CmLj0soPRfQpX0of3FuTjXOljUCq0G6BtwFUMPS4adARLccoDVQHWWM29hA_tHvkFREnZEJOZqz7OOrqdtSUm0u8ArE7M89ge5RYTuW4' },
-    { name: 'Community Helper', earned: '11/01/24', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBlRookJWifC2YjsVfwN50NCX8Qh_tyVU_WGR7N5tghQPLKvySFMJOHGW6SoCWnEcFvIVgUiRYw02Ox9F8XgLiRTU54qZC7qXUwozYUd9Hqs4M45UaInZe6Y3FOm5hMA72CckS9y2we5c8PnsGI0xIwh1r5QDXX5mhgS9qkYKfW1No7KXXHW2iSmPlN-QTRPplCZe4q7TroQnOaTg0oDrsONzColC7zeXEQSSu2qeiBLwi0ZfRwCP53JRiTJBLxdOLrXUv6KfpHzvg' },
-    { name: 'Health Advocate', earned: '25/12/23', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFS82NDDT2pIORuL0ItJZoaT5-afiRZsxFAcg-0P_r5041QjZ2raSVVtpa-1ZzwKU_Bduvs7oryeMlAnJY2IeDIQcM9zeEXha-tQ41Il27vxmr2AQboXkfmWNNk4OmEoZjLR-fa3roIzmyOZJ-Be3SvC4PgL4UWJmzrLJMUSmjLYjjkTZ00trJMBE70r7nEZ0SQzME37p4UVHumahb71-z84fyuc20SV3Bo0782I3z_vEOxnPfXFH7FKNVdNyZU55dylQIn-mvLow' },
-    { name: 'Animal Ally', earned: '10/11/23', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCX1qbIXnshFv3_i7z8tx8nVVePi1euYQ1kPgncCyuxp5s_tDx7P8ecO9V1BvxFvyUd2ahX7ysjQlY5kx7E1dhjZTNNwAqy4IY0kSDICoW_TwsUcrwjLzsMLgiT8ePczFbOKI6wmRqh4FcWPtdw0XrXZlL_VtNqATTk5PMzElbYVB6IFxsqA1r959TqUlnAwG_jCT3fplnDaOyz-6TgV9XpUI7x4zxEMJsGABtFg_kZlK59PCCxRO_-M1udBgThc8ExX1pQ5KNQ6e4' },
-    { name: 'First Steps', earned: '01/10/23', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCoAdg_5mySRSSvNGDJ2NttFYsb5q71DMWSuJxXsw-DSkxAkTc-WPZFaVRSzNr-o83yqb7e72fZSHZGfnLKCv35pLt_Fnf_wv-d7htujvbjUCcQf-fHzsKNwB833DPRs5153Or731EsaD6NKWumNb-92l5AfHnd4A4RjfzpXYl5lJmHklLevHa0a2mvzoG3meyA01Z_9UDMh_kV4uCxxxjWHS1V7UMY1CXh0SGOLV1p8yfwCePnYNcYVfJz-wsrZEEhjXctJ55Znec' }
-  ];
+  const loadBadges = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('user_badges')
+        .select(`
+          id,
+          earned_at,
+          badges (
+            id,
+            name,
+            description,
+            image_url
+          )
+        `)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+      setBadges(data || []);
+    } catch (error) {
+      console.error('Error loading badges:', error);
+    }
+  };
+
+  if (authLoading || loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-white text-xl">Chargement...</div>
+      </div>
+    );
+  }
+
+  if (!profile) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-white text-xl">Profil introuvable</div>
+      </div>
+    );
+  }
+
+  const challengesCompleted = 0; // TODO: Load from database
+  const levelProgress = (profile.total_points % 1000) / 10; // Simple calculation
+  const pointsToNextLevel = 1000 - (profile.total_points % 1000);
 
   const lockedBadges = [
-    { name: 'Eco-Innovator', requirement: 'Complete 5 eco challenges' },
-    { name: 'Mentor Master', requirement: 'Tutor 10 hours' }
+    { name: 'Éco-Innovateur', requirement: 'Complétez 5 défis écologiques' },
+    { name: 'Maître Mentor', requirement: 'Donnez 10 heures de tutorat' }
   ];
 
   return (
@@ -37,10 +96,10 @@ const Profile = () => {
         <div className="flex flex-wrap justify-between gap-3 p-4">
           <div className="flex min-w-72 flex-col gap-3">
             <p className="text-white text-4xl font-black leading-tight tracking-[-0.033em]">
-              My Profile & Rewards
+              Mon Profil & Récompenses
             </p>
             <p className="text-[#9db9a6] text-base font-normal leading-normal">
-              View your progress, achievements, and redeem your hard-earned points.
+              Consultez vos progrès, vos réalisations et échangez vos points durement gagnés.
             </p>
           </div>
         </div>
@@ -53,16 +112,16 @@ const Profile = () => {
               <div className="flex flex-col items-center text-center">
                 <div
                   className="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 mb-4"
-                  style={{ backgroundImage: `url('${userProfile.avatar}')` }}
+                  style={{ backgroundImage: profile.avatar_url ? `url('${profile.avatar_url}')` : 'linear-gradient(135deg, #13ec5b 0%, #0a7f2f 100%)' }}
                 />
                 <p className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">
-                  {userProfile.name}
+                  {profile.full_name}
                 </p>
                 <p className="text-[#9db9a6] text-base font-normal leading-normal mt-1">
-                  {userProfile.mission}
+                  {profile.mission_statement || 'Rejoignez des défis et faites la différence !'}
                 </p>
                 <Button variant="ghost" className="mt-4 w-full max-w-[480px]">
-                  Share My Profile
+                  Partager Mon Profil
                 </Button>
               </div>
             </Card>
@@ -71,21 +130,21 @@ const Profile = () => {
             <Card className="p-4">
               <div className="flex flex-wrap gap-4">
                 <div className="flex min-w-[158px] flex-1 flex-col gap-2 rounded-lg p-4 bg-[#102216] border border-[#3b5443]">
-                  <p className="text-white text-base font-medium leading-normal">Total Points</p>
+                  <p className="text-white text-base font-medium leading-normal">Points Totaux</p>
                   <p className="text-white tracking-light text-2xl font-bold leading-tight">
-                    {userProfile.totalPoints.toLocaleString()}
+                    {profile.total_points.toLocaleString()}
                   </p>
                 </div>
                 <div className="flex min-w-[158px] flex-1 flex-col gap-2 rounded-lg p-4 bg-[#102216] border border-[#3b5443]">
-                  <p className="text-white text-base font-medium leading-normal">Challenges Completed</p>
+                  <p className="text-white text-base font-medium leading-normal">Défis Complétés</p>
                   <p className="text-white tracking-light text-2xl font-bold leading-tight">
-                    {userProfile.challengesCompleted}
+                    {challengesCompleted}
                   </p>
                 </div>
                 <div className="flex min-w-[158px] w-full flex-1 flex-col gap-2 rounded-lg p-4 bg-[#102216] border border-[#3b5443]">
-                  <p className="text-white text-base font-medium leading-normal">Badges Earned</p>
+                  <p className="text-white text-base font-medium leading-normal">Badges Gagnés</p>
                   <p className="text-white tracking-light text-2xl font-bold leading-tight">
-                    {userProfile.badgesEarned}
+                    {badges.length}
                   </p>
                 </div>
               </div>
@@ -96,17 +155,17 @@ const Profile = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex gap-6 justify-between">
                   <p className="text-white text-base font-medium leading-normal">
-                    Next Level: {userProfile.nextLevel}
+                    Niveau Suivant: {profile.level}
                   </p>
                 </div>
                 <div className="rounded-full bg-[#3b5443]">
                   <div
                     className="h-2 rounded-full bg-primary transition-all"
-                    style={{ width: `${userProfile.levelProgress}%` }}
+                    style={{ width: `${levelProgress}%` }}
                   />
                 </div>
                 <p className="text-[#9db9a6] text-sm font-normal leading-normal">
-                  {userProfile.pointsToNextLevel} points to the next level
+                  {pointsToNextLevel} points pour le niveau suivant
                 </p>
               </div>
             </Card>
@@ -126,7 +185,7 @@ const Profile = () => {
                         : 'text-gray-400 hover:text-gray-200 hover:border-gray-500 border-transparent'
                     }`}
                   >
-                    My Badges
+                    Mes Badges
                   </button>
                   <button
                     onClick={() => setActiveTab('rewards')}
@@ -136,7 +195,7 @@ const Profile = () => {
                         : 'text-gray-400 hover:text-gray-200 hover:border-gray-500 border-transparent'
                     }`}
                   >
-                    Rewards Store
+                    Boutique Récompenses
                   </button>
                   <button
                     onClick={() => setActiveTab('activity')}
@@ -146,7 +205,7 @@ const Profile = () => {
                         : 'text-gray-400 hover:text-gray-200 hover:border-gray-500 border-transparent'
                     }`}
                   >
-                    Activity History
+                    Historique d'Activité
                   </button>
                 </nav>
               </div>
@@ -154,50 +213,58 @@ const Profile = () => {
               {/* Tab Content: My Badges */}
               {activeTab === 'badges' && (
                 <div className="py-6">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                    {/* Earned Badges */}
-                    {badges.map((badge, index) => (
-                      <Card key={index} className="flex flex-col items-center text-center p-4">
-                        <img
-                          className="w-20 h-20 rounded-full mb-3 object-cover"
-                          src={badge.image}
-                          alt={badge.name}
-                        />
-                        <p className="font-bold text-sm text-white">{badge.name}</p>
-                        <p className="text-xs text-gray-400">Earned: {badge.earned}</p>
-                      </Card>
-                    ))}
+                  {badges.length === 0 && lockedBadges.length === 0 ? (
+                    <div className="text-center py-12">
+                      <p className="text-gray-400 text-lg">Aucun badge pour le moment. Commencez à participer aux défis pour gagner des badges !</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                      {/* Earned Badges */}
+                      {badges.map((userBadge, index) => (
+                        <Card key={index} className="flex flex-col items-center text-center p-4">
+                          <div className="w-20 h-20 rounded-full mb-3 bg-primary/20 flex items-center justify-center">
+                            <span className="material-symbols-outlined text-4xl text-primary">
+                              {userBadge.badges.image_url || 'emoji_events'}
+                            </span>
+                          </div>
+                          <p className="font-bold text-sm text-white">{userBadge.badges.name}</p>
+                          <p className="text-xs text-gray-400">
+                            Obtenu le : {new Date(userBadge.earned_at).toLocaleDateString('fr-FR')}
+                          </p>
+                        </Card>
+                      ))}
 
-                    {/* Locked Badges */}
-                    {lockedBadges.map((badge, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-center text-center p-4 rounded-lg bg-[#102216] border border-[#28392e] opacity-60"
-                      >
-                        <div className="w-20 h-20 rounded-full mb-3 bg-gray-700 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-4xl text-gray-400">
-                            lock
-                          </span>
+                      {/* Locked Badges */}
+                      {lockedBadges.map((badge, index) => (
+                        <div
+                          key={index}
+                          className="flex flex-col items-center text-center p-4 rounded-lg bg-[#102216] border border-[#28392e] opacity-60"
+                        >
+                          <div className="w-20 h-20 rounded-full mb-3 bg-gray-700 flex items-center justify-center">
+                            <span className="material-symbols-outlined text-4xl text-gray-400">
+                              lock
+                            </span>
+                          </div>
+                          <p className="font-bold text-sm text-gray-300">{badge.name}</p>
+                          <p className="text-xs text-gray-400">{badge.requirement}</p>
                         </div>
-                        <p className="font-bold text-sm text-gray-300">{badge.name}</p>
-                        <p className="text-xs text-gray-400">{badge.requirement}</p>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 
               {/* Tab Content: Rewards Store */}
               {activeTab === 'rewards' && (
                 <div className="py-6">
-                  <p className="text-center text-white text-lg">Rewards store coming soon!</p>
+                  <p className="text-center text-white text-lg">Boutique de récompenses bientôt disponible !</p>
                 </div>
               )}
 
               {/* Tab Content: Activity History */}
               {activeTab === 'activity' && (
                 <div className="py-6">
-                  <p className="text-center text-white text-lg">Activity history coming soon!</p>
+                  <p className="text-center text-white text-lg">Historique d'activité bientôt disponible !</p>
                 </div>
               )}
             </div>

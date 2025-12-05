@@ -7,9 +7,9 @@ const Home = () => {
   const challenges = [
     {
       id: 1,
-      title: 'Community Food Drive',
-      description: 'Help us collect non-perishable food items for local families in need. Your contribution can make a huge difference.',
-      category: 'Solidarity',
+      title: 'Collecte Alimentaire Communautaire',
+      description: 'Aidez-nous à collecter des aliments non périssables pour les familles locales dans le besoin. Votre contribution peut faire une grande différence.',
+      category: 'Solidarité',
       progress: 75,
       collected: 1500,
       goal: 2000,
@@ -19,9 +19,9 @@ const Home = () => {
     },
     {
       id: 2,
-      title: 'Coastal Cleanup Day',
-      description: 'Join us for a day of cleaning our beautiful beaches. Let\'s protect marine life and preserve our coastline.',
-      category: 'Environment',
+      title: 'Journée de Nettoyage des Côtes',
+      description: 'Rejoignez-nous pour une journée de nettoyage de nos belles plages. Protégeons la vie marine et préservons notre littoral.',
+      category: 'Environnement',
       progress: 40,
       volunteers: 40,
       goal: 100,
@@ -30,9 +30,9 @@ const Home = () => {
     },
     {
       id: 3,
-      title: 'Mentor a Student',
-      description: 'Become a mentor and guide a young student. Share your knowledge and inspire the next generation of leaders.',
-      category: 'Education',
+      title: 'Encadrer un Étudiant',
+      description: 'Devenez mentor et guidez un jeune étudiant. Partagez vos connaissances et inspirez la prochaine génération de leaders.',
+      category: 'Éducation',
       progress: 60,
       mentors: 30,
       goal: 50,
@@ -56,14 +56,14 @@ const Home = () => {
               >
                 <div className="flex flex-col gap-2 text-left max-w-2xl">
                   <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                    Your Action, Their Future.
+                    Votre Action, Leur Avenir.
                   </h1>
                   <h2 className="text-white/90 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                    Join a community making a real difference. Find a challenge and start your solidarity journey today.
+                    Rejoignez une communauté qui fait une réelle différence. Trouvez un défi et commencez votre parcours de solidarité aujourd'hui.
                   </h2>
                 </div>
                 <Button variant="primary" size="lg">
-                  Find Your Challenge
+                  Trouvez Votre Défi
                 </Button>
               </div>
             </div>
@@ -72,19 +72,19 @@ const Home = () => {
           {/* Stats Section */}
           <div className="flex flex-wrap gap-4">
             <Card className="flex min-w-[158px] flex-1 flex-col gap-2 p-6">
-              <p className="text-white/80 text-base font-medium leading-normal">Volunteers Engaged</p>
+              <p className="text-white/80 text-base font-medium leading-normal">Volontaires Engagés</p>
               <p className="text-white tracking-light text-3xl font-bold leading-tight">12,450</p>
             </Card>
             <Card className="flex min-w-[158px] flex-1 flex-col gap-2 p-6">
-              <p className="text-white/80 text-base font-medium leading-normal">Trees Planted</p>
+              <p className="text-white/80 text-base font-medium leading-normal">Arbres Plantés</p>
               <p className="text-white tracking-light text-3xl font-bold leading-tight">8,900</p>
             </Card>
             <Card className="flex min-w-[158px] flex-1 flex-col gap-2 p-6">
-              <p className="text-white/80 text-base font-medium leading-normal">Meals Donated</p>
+              <p className="text-white/80 text-base font-medium leading-normal">Repas Donnés</p>
               <p className="text-white tracking-light text-3xl font-bold leading-tight">25,600</p>
             </Card>
             <Card className="flex min-w-[158px] flex-1 flex-col gap-2 p-6">
-              <p className="text-white/80 text-base font-medium leading-normal">Hours Volunteered</p>
+              <p className="text-white/80 text-base font-medium leading-normal">Heures de Bénévolat</p>
               <p className="text-white tracking-light text-3xl font-bold leading-tight">40,200</p>
             </Card>
           </div>
@@ -92,25 +92,25 @@ const Home = () => {
           {/* Challenges Section */}
           <div className="flex flex-col gap-4">
             <h2 className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-              Current & Upcoming Challenges
+              Défis Actuels & À Venir
             </h2>
 
             {/* Filter Buttons */}
             <div className="flex gap-3 px-4 flex-wrap">
               <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 hover:bg-primary/30 text-primary px-4 transition-colors">
-                <p className="text-sm font-bold leading-normal">All</p>
+                <p className="text-sm font-bold leading-normal">Tous</p>
               </button>
               <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Solidarity</p>
+                <p className="text-sm font-medium leading-normal">Solidarité</p>
               </button>
               <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Environment</p>
+                <p className="text-sm font-medium leading-normal">Environnement</p>
               </button>
               <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Education</p>
+                <p className="text-sm font-medium leading-normal">Éducation</p>
               </button>
               <button className="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 transition-colors">
-                <p className="text-sm font-medium leading-normal">Health</p>
+                <p className="text-sm font-medium leading-normal">Santé</p>
               </button>
             </div>
 
@@ -142,11 +142,11 @@ const Home = () => {
                     {/* Challenge Stats */}
                     <div className="flex items-center justify-between text-sm text-white/70">
                       <span>
-                        {challenge.collected ? `${challenge.collected}/${challenge.goal} ${challenge.unit} collected` :
-                         challenge.volunteers ? `${challenge.volunteers}/${challenge.goal} volunteers` :
+                        {challenge.collected ? `${challenge.collected}/${challenge.goal} ${challenge.unit} collectés` :
+                         challenge.volunteers ? `${challenge.volunteers}/${challenge.goal} volontaires` :
                          `${challenge.mentors}/${challenge.goal} mentors`}
                       </span>
-                      <span>{challenge.daysLeft ? `${challenge.daysLeft} days left` : challenge.startsIn || challenge.status}</span>
+                      <span>{challenge.daysLeft ? `${challenge.daysLeft} jours restants` : challenge.startsIn || challenge.status}</span>
                     </div>
 
                     <Link to={`/challenge/${challenge.id}`}>
@@ -154,7 +154,7 @@ const Home = () => {
                         variant={challenge.id === 2 ? "primary" : "ghost"}
                         className="w-full mt-4"
                       >
-                        {challenge.id === 2 ? 'Join Now' : 'View Details'}
+                        {challenge.id === 2 ? 'Rejoindre Maintenant' : 'Voir les Détails'}
                       </Button>
                     </Link>
                   </div>
@@ -166,12 +166,12 @@ const Home = () => {
           {/* Testimonials Section */}
           <div className="flex flex-col gap-6 py-10">
             <h2 className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4">
-              Stories from Our Community
+              Histoires de Notre Communauté
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
               <Card className="flex flex-col gap-4 p-8">
                 <p className="text-white/90">
-                  "Participating in the food drive was an incredibly rewarding experience. It's amazing to see how a small action can have such a big impact on your own community. TChallenge made it so easy to get involved."
+                  "Participer à la collecte alimentaire a été une expérience incroyablement enrichissante. C'est incroyable de voir comment une petite action peut avoir un si grand impact sur votre propre communauté. TChallenge a rendu si facile de s'impliquer."
                 </p>
                 <div className="flex items-center gap-4 pt-2">
                   <img
@@ -181,14 +181,14 @@ const Home = () => {
                   />
                   <div>
                     <p className="font-bold text-white">John Doe</p>
-                    <p className="text-sm text-white/70">Volunteer</p>
+                    <p className="text-sm text-white/70">Volontaire</p>
                   </div>
                 </div>
               </Card>
 
               <Card className="flex flex-col gap-4 p-8">
                 <p className="text-white/90">
-                  "I never thought I could contribute to environmental causes, but the coastal cleanup challenge was so well-organized and fun. I met great people and we made a real difference together. Can't wait for the next one!"
+                  "Je n'aurais jamais pensé pouvoir contribuer aux causes environnementales, mais le défi de nettoyage des côtes était si bien organisé et amusant. J'ai rencontré des gens formidables et nous avons fait une réelle différence ensemble. Hâte de participer au prochain !"
                 </p>
                 <div className="flex items-center gap-4 pt-2">
                   <img
@@ -198,7 +198,7 @@ const Home = () => {
                   />
                   <div>
                     <p className="font-bold text-white">Jane Smith</p>
-                    <p className="text-sm text-white/70">Challenge Participant</p>
+                    <p className="text-sm text-white/70">Participant au Défi</p>
                   </div>
                 </div>
               </Card>

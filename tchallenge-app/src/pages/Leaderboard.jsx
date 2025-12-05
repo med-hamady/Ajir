@@ -52,13 +52,13 @@ const Leaderboard = () => {
               Classement Général
             </p>
             <p className="text-[#9db9a6] text-base font-normal leading-normal">
-              See who is leading the charge in solidarity and humanitarian actions.
+              Découvrez qui mène la charge en matière de solidarité et d'actions humanitaires.
             </p>
           </div>
         </div>
 
         <h2 className="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-          Top Contributors
+          Meilleurs Contributeurs
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
@@ -73,14 +73,14 @@ const Leaderboard = () => {
                     style={{ backgroundImage: `url('${user.avatar}')` }}
                   />
                   <div className="flex flex-col gap-1 text-center">
-                    <p className={`${user.textColor} text-lg font-bold leading-normal`}>{user.emoji} 1st Place</p>
+                    <p className={`${user.textColor} text-lg font-bold leading-normal`}>{user.emoji} 1ère Place</p>
                     <p className="text-white text-xl font-bold leading-tight">{user.name}</p>
                     <p className="text-[#9db9a6] text-base font-normal leading-normal">
                       {user.points.toLocaleString()} Points
                     </p>
                   </div>
                   <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 flex-row-reverse bg-[#28392e] text-white text-sm font-medium leading-normal w-fit hover:bg-opacity-80 transition-colors">
-                    <span className="truncate">View Profile</span>
+                    <span className="truncate">Voir le Profil</span>
                   </button>
                 </div>
                 <div className="w-full bg-[#1c271f] border-t border-white/10 h-28 rounded-b-lg flex items-center justify-center -m-4 mt-4">
@@ -96,7 +96,7 @@ const Leaderboard = () => {
                 />
                 <div className="text-center">
                   <p className="text-white text-base font-medium leading-normal">
-                    {user.emoji} {user.rank === 2 ? '2nd' : '3rd'} Place: {user.name}
+                    {user.emoji} {user.rank === 2 ? '2ème' : '3ème'} Place: {user.name}
                   </p>
                   <p className="text-[#9db9a6] text-sm font-normal leading-normal">
                     {user.points.toLocaleString()} Points
@@ -115,7 +115,7 @@ const Leaderboard = () => {
           <div className="relative w-full lg:w-1/3">
             <input
               className="w-full h-10 px-4 pl-10 rounded-lg bg-[#28392e] text-white border-none focus:ring-2 focus:ring-primary"
-              placeholder="Search for a user..."
+              placeholder="Rechercher un utilisateur..."
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -132,7 +132,7 @@ const Leaderboard = () => {
                 activeTab === 'week' ? 'text-white bg-primary/20' : 'text-white hover:bg-primary/10'
               }`}
             >
-              This Week
+              Cette Semaine
             </button>
             <button
               onClick={() => setActiveTab('month')}
@@ -140,7 +140,7 @@ const Leaderboard = () => {
                 activeTab === 'month' ? 'text-white bg-primary/20' : 'text-white hover:bg-primary/10'
               }`}
             >
-              This Month
+              Ce Mois-ci
             </button>
             <button
               onClick={() => setActiveTab('all')}
@@ -148,7 +148,7 @@ const Leaderboard = () => {
                 activeTab === 'all' ? 'text-white bg-primary/20' : 'text-white hover:bg-primary/10'
               }`}
             >
-              All Time
+              Tout le Temps
             </button>
           </div>
         </div>
@@ -159,9 +159,9 @@ const Leaderboard = () => {
             <div className="flex flex-col">
               <div className="grid grid-cols-12 gap-4 px-6 py-3 text-[#9db9a6] font-medium text-sm border-b border-white/10">
                 <div className="col-span-1 text-center">#</div>
-                <div className="col-span-5">User</div>
+                <div className="col-span-5">Utilisateur</div>
                 <div className="col-span-3 text-right">Points</div>
-                <div className="col-span-3 text-right">Challenges</div>
+                <div className="col-span-3 text-right">Défis</div>
               </div>
 
               <div className="divide-y divide-white/10">

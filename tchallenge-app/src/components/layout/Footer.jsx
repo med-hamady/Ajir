@@ -16,21 +16,21 @@ const Footer = () => {
               </h2>
             </div>
             <p className="text-white/70 text-sm">
-              Join a community making a real difference.
+              Rejoignez une communauté qui fait vraiment la différence.
             </p>
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4">Quick Links</h4>
+            <h4 className="text-white font-bold mb-4">Liens Rapides</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-white/70 hover:text-white transition text-sm">
-                  About Us
+                  À Propos
                 </Link>
               </li>
               <li>
                 <Link to="/" className="text-white/70 hover:text-white transition text-sm">
-                  Discover
+                  Découvrir
                 </Link>
               </li>
               <li>
@@ -40,30 +40,30 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/contact" className="text-white/70 hover:text-white transition text-sm">
-                  Contact Us
+                  Nous Contacter
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4">Legal</h4>
+            <h4 className="text-white font-bold mb-4">Légal</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/privacy" className="text-white/70 hover:text-white transition text-sm">
-                  Privacy Policy
+                  Politique de Confidentialité
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-white/70 hover:text-white transition text-sm">
-                  Terms of Service
+                  Conditions d'Utilisation
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-4">Follow Us</h4>
+            <h4 className="text-white font-bold mb-4">Suivez-Nous</h4>
             <div className="flex items-center gap-4">
               <a href="#" className="text-white/70 hover:text-white transition">
                 <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/50">
-          © 2024 TChallenge. All rights reserved.
+          © 2024 TChallenge. Tous droits réservés.
         </div>
       </div>
     </footer>

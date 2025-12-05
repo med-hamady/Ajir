@@ -18,28 +18,28 @@ const Header = () => {
 
       <div className="hidden md:flex flex-1 justify-center items-center gap-9">
         <Link to="/" className="text-white text-sm font-medium leading-normal hover:text-primary transition-colors">
-          Discover
+          Découvrir
         </Link>
         <Link to="/challenges" className="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal">
-          My Challenges
+          Mes Défis
         </Link>
         <Link to="/leaderboard" className="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal">
-          Leaderboard
+          Classement
         </Link>
         <Link to="/about" className="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal">
-          About Us
+          À Propos
         </Link>
       </div>
 
       <div className="flex items-center gap-2">
         <Link to="/login" className="hidden md:block">
           <Button variant="outline" size="md">
-            Login
+            Connexion
           </Button>
         </Link>
         <Link to="/register">
           <Button variant="primary" size="md">
-            Sign Up
+            S'inscrire
           </Button>
         </Link>
         <Link to="/profile" className="hidden md:block">
