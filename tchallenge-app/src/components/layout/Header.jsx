@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import Logo from '../common/Logo';
 import Button from '../common/Button';
 
 const Header = () => {
+  const { user, signOut } = useAuth();
+
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 bg-background-dark/80 backdrop-blur-sm px-4 md:px-10 lg:px-20 xl:px-40 py-3">
       <div className="flex items-center gap-4 text-white">
@@ -32,24 +35,40 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <Link to="/login" className="hidden md:block">
-          <Button variant="outline" size="md">
-            Connexion
-          </Button>
-        </Link>
-        <Link to="/register">
-          <Button variant="primary" size="md">
-            S'inscrire
-          </Button>
-        </Link>
-        <Link to="/profile" className="hidden md:block">
-          <div
-            className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-            style={{
-              backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmCR2pSEyRy-F4sBdrrR1n7Eni5lKU7_Mj7QHGcjJ1TbQBcB0f8cq3AC1CgB2thNGd4kjM4pi2gp6UQ6zp10I8ZdyMfgxDEYe_eIuEMqWI85alpIu8ZmEWb2pxPzJ3K6BWdE-LM3mmBtfPQPi0VEWq3M1VnEmwjUccMeO-1Cl1xRu1MvbmJ7hDNBVFBbH36bXBpW8mx807CTsWeNi4XjWqlrxR9xAc6MEhRDowvM8QSpNilJa_5adEzjJgc_w69nOBLvkYrmodR54")',
-            }}
-          />
-        </Link>
+        {user ? (
+          // Utilisateur connecté - afficher le profil et déconnexion
+          <>
+            <button
+              onClick={signOut}
+              className="hidden md:block text-white/70 hover:text-white transition-colors text-sm font-medium"
+            >
+              Déconnexion
+            </button>
+            <Link to="/profile">
+              <div
+                className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50 hover:border-primary transition-colors"
+                style={{
+                  backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmCR2pSEyRy-F4sBdrrR1n7Eni5lKU7_Mj7QHGcjJ1TbQBcB0f8cq3AC1CgB2thNGd4kjM4pi2gp6UQ6zp10I8ZdyMfgxDEYe_eIuEMqWI85alpIu8ZmEWb2pxPzJ3K6BWdE-LM3mmBtfPQPi0VEWq3M1VnEmwjUccMeO-1Cl1xRu1MvbmJ7hDNBVFBbH36bXBpW8mx807CTsWeNi4XjWqlrxR9xAc6MEhRDowvM8QSpNilJa_5adEzjJgc_w69nOBLvkYrmodR54")',
+                }}
+                title={user.email}
+              />
+            </Link>
+          </>
+        ) : (
+          // Utilisateur non connecté - afficher Login et Sign Up
+          <>
+            <Link to="/login" className="hidden md:block">
+              <Button variant="outline" size="md">
+                Connexion
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button variant="primary" size="md">
+                S'inscrire
+              </Button>
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );

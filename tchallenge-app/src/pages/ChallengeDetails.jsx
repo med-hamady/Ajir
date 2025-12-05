@@ -1,11 +1,38 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 
 const ChallengeDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('description');
+  const [hasJoined, setHasJoined] = useState(false);
+
+  const handleJoinChallenge = () => {
+    if (!user) {
+      // Rediriger vers la page de connexion si non connecté
+      navigate('/login', { state: { from: `/challenge/${id}` } });
+      return;
+    }
+
+    // Logique pour rejoindre le défi
+    setHasJoined(true);
+    alert('Félicitations ! Vous avez rejoint le défi. Vous recevrez bientôt plus d\'informations.');
+  };
+
+  const handleDonate = () => {
+    if (!user) {
+      // Rediriger vers la page de connexion si non connecté
+      navigate('/login', { state: { from: `/challenge/${id}` } });
+      return;
+    }
+
+    // Pour l'instant, afficher un message (plus tard, intégrer un système de paiement)
+    alert('Fonctionnalité de don en cours de développement. Merci de votre intérêt !');
+  };
 
   // Mock challenge data
   const challenge = {
@@ -208,10 +235,20 @@ const ChallengeDetails = () => {
           {/* Action Panel */}
           <Card className="p-6 space-y-4">
             <h3 className="text-xl font-bold text-center text-white">Rejoignez le Mouvement !</h3>
-            <Button variant="primary" className="w-full" size="lg">
-              Rejoindre le Défi
+            <Button
+              variant="primary"
+              className="w-full"
+              size="lg"
+              onClick={handleJoinChallenge}
+            >
+              {hasJoined ? '✓ Défi Rejoint' : 'Rejoindre le Défi'}
             </Button>
-            <Button variant="secondary" className="w-full" size="lg">
+            <Button
+              variant="secondary"
+              className="w-full"
+              size="lg"
+              onClick={handleDonate}
+            >
               Faire un Don
             </Button>
 
