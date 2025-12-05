@@ -40,7 +40,7 @@ const Header = () => {
           <>
             <button
               onClick={signOut}
-              className="hidden md:block text-white/70 hover:text-white transition-colors text-sm font-medium"
+              className="text-white/70 hover:text-white transition-colors text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-white/5"
             >
               Déconnexion
             </button>
