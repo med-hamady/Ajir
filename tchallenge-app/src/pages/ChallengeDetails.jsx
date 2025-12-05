@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 
 const ChallengeDetails = () => {
   const { id } = useParams();
+  const [activeTab, setActiveTab] = useState('description');
 
   // Mock challenge data
   const challenge = {
@@ -12,6 +14,40 @@ const ChallengeDetails = () => {
     fullDescription: [
       'Ce défi est un appel à l\'action pour tous ceux qui sont passionnés par l\'avenir de notre planète. La déforestation est un problème critique, contribuant de manière significative au changement climatique et à la perte de biodiversité. L\'initiative "Forêts pour l\'Avenir" vise à inverser cette tendance en plantant des arbres dans les zones qui en ont le plus besoin.',
       'En rejoignant, vous ne plantez pas seulement un arbre ; vous aidez à restaurer les habitats de nombreuses espèces, à améliorer la qualité de l\'air et de l\'eau, et à fournir des moyens de subsistance durables aux communautés locales. Chaque contribution, grande ou petite, crée un effet d\'entraînement de changement positif. Construisons ensemble un avenir plus vert.'
+    ],
+    objectives: [
+      'Planter 100 000 arbres dans les zones déforestées d\'ici la fin de l\'année',
+      'Restaurer 10 000 hectares d\'écosystèmes forestiers vitaux',
+      'Créer des emplois verts pour 500 membres de la communauté locale',
+      'Réduire les émissions de CO2 de 50 000 tonnes par an',
+      'Protéger et restaurer les habitats de 200 espèces menacées',
+      'Former 1 000 volontaires aux pratiques de reforestation durable'
+    ],
+    howToParticipate: [
+      {
+        title: '1. Inscrivez-vous au Défi',
+        description: 'Créez votre compte ou connectez-vous et cliquez sur "Rejoindre le Défi" pour vous inscrire officiellement.'
+      },
+      {
+        title: '2. Choisissez votre Contribution',
+        description: 'Vous pouvez contribuer par un don financier, du bénévolat sur le terrain, ou en sensibilisant votre communauté.'
+      },
+      {
+        title: '3. Plantez des Arbres',
+        description: 'Participez à nos événements de plantation organisés chaque week-end, ou plantez des arbres de manière indépendante et enregistrez votre contribution.'
+      },
+      {
+        title: '4. Suivez votre Impact',
+        description: 'Consultez votre tableau de bord pour voir combien d\'arbres vous avez plantés et l\'impact environnemental de votre contribution.'
+      },
+      {
+        title: '5. Partagez votre Expérience',
+        description: 'Inspirez d\'autres personnes en partageant vos photos et histoires sur les réseaux sociaux avec #ForêtsPourLAvenir.'
+      },
+      {
+        title: '6. Gagnez des Badges',
+        description: 'Débloquez des badges et récompenses en atteignant différents jalons de contribution et en engageant votre réseau.'
+      }
     ],
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC8ILNJ3LXQ_K-wiY_J4nK6DCQbCpA4c9mkOamrU8u6MEBycbOMGLfDT3Dvu3nEBZNbodgGmpdrrQwvOfMuDnNyBF-nSs8kDPgOBGRtLh__GZ3eooAcnRs2ILT2jiKN90M0YZ1ytfNhXPjFDqBjNufE4MyBbFstAeFccroH0GYMswgNaPGXoFr4xX8jUaWVaZiHcIxv4E5zd3ERMXzepKLrp99eyyiuh11Ly3t_xsd6oz4r4eqYNVYfHs93eMQgVn03v4wut3G0fGQ',
     fundsRaised: 7850,
@@ -53,23 +89,71 @@ const ChallengeDetails = () => {
           <Card className="p-6">
             <div className="border-b border-border-dark mb-4">
               <nav aria-label="Tabs" className="flex space-x-6">
-                <a className="text-primary border-b-2 border-primary px-1 py-3 text-sm font-semibold" href="#">
+                <button
+                  onClick={() => setActiveTab('description')}
+                  className={`px-1 py-3 text-sm font-semibold transition-colors ${
+                    activeTab === 'description'
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
                   Description
-                </a>
-                <a className="text-gray-400 hover:text-white px-1 py-3 text-sm font-medium" href="#">
+                </button>
+                <button
+                  onClick={() => setActiveTab('objectives')}
+                  className={`px-1 py-3 text-sm font-semibold transition-colors ${
+                    activeTab === 'objectives'
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
                   Objectifs
-                </a>
-                <a className="text-gray-400 hover:text-white px-1 py-3 text-sm font-medium" href="#">
+                </button>
+                <button
+                  onClick={() => setActiveTab('howto')}
+                  className={`px-1 py-3 text-sm font-semibold transition-colors ${
+                    activeTab === 'howto'
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
                   Comment Participer
-                </a>
+                </button>
               </nav>
             </div>
 
-            <div className="space-y-4 text-white/90">
-              {challenge.fullDescription.map((paragraph, index) => (
-                <p key={index} className="text-base leading-relaxed">{paragraph}</p>
-              ))}
-            </div>
+            {/* Tab Content */}
+            {activeTab === 'description' && (
+              <div className="space-y-4 text-white/90">
+                {challenge.fullDescription.map((paragraph, index) => (
+                  <p key={index} className="text-base leading-relaxed">{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'objectives' && (
+              <div className="space-y-3">
+                {challenge.objectives.map((objective, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-primary text-xl mt-0.5">
+                      check_circle
+                    </span>
+                    <p className="text-base text-white/90 leading-relaxed flex-1">{objective}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'howto' && (
+              <div className="space-y-6">
+                {challenge.howToParticipate.map((step, index) => (
+                  <div key={index} className="space-y-2">
+                    <h4 className="text-lg font-semibold text-primary">{step.title}</h4>
+                    <p className="text-base text-white/90 leading-relaxed">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </Card>
 
           <Card className="p-6">
