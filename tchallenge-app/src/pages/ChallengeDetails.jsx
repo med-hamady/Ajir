@@ -10,6 +10,10 @@ const ChallengeDetails = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('description');
   const [hasJoined, setHasJoined] = useState(false);
+  const [showDonateModal, setShowDonateModal] = useState(false);
+  const [donateAmount, setDonateAmount] = useState(20);
+  const [customAmount, setCustomAmount] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleJoinChallenge = () => {
     if (!user) {
@@ -30,8 +34,33 @@ const ChallengeDetails = () => {
       return;
     }
 
-    // Pour l'instant, afficher un message (plus tard, intégrer un système de paiement)
-    alert('Fonctionnalité de don en cours de développement. Merci de votre intérêt !');
+    // Ouvrir la modale de don
+    setShowDonateModal(true);
+  };
+
+  const processDonation = async () => {
+    setIsProcessing(true);
+
+    const finalAmount = customAmount ? parseFloat(customAmount) : donateAmount;
+
+    if (!finalAmount || finalAmount <= 0) {
+      alert('Veuillez entrer un montant valide');
+      setIsProcessing(false);
+      return;
+    }
+
+    // Simuler le traitement du paiement (2 secondes)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    setIsProcessing(false);
+    setShowDonateModal(false);
+
+    // Message de succès
+    alert(`✅ Merci pour votre généreuse contribution de ${finalAmount}€ !\n\nVotre don aidera à planter des arbres et à lutter contre le changement climatique.`);
+
+    // Réinitialiser
+    setCustomAmount('');
+    setDonateAmount(20);
   };
 
   // Mock challenge data
@@ -290,6 +319,107 @@ const ChallengeDetails = () => {
           </Card>
         </div>
       </div>
+
+      {/* Modale de Don */}
+      {showDonateModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#0d1912] border border-[#3b5443] rounded-xl max-w-md w-full p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-white">Faire un Don</h3>
+              <button
+                onClick={() => setShowDonateModal(false)}
+                className="text-gray-400 hover:text-white transition-colors"
+                disabled={isProcessing}
+              >
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+
+            <p className="text-gray-300 mb-6">
+              Votre contribution aide à planter des arbres et à lutter contre le changement climatique.
+            </p>
+
+            {/* Montants prédéfinis */}
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              {[10, 20, 50, 100, 200, 500].map((amount) => (
+                <button
+                  key={amount}
+                  onClick={() => {
+                    setDonateAmount(amount);
+                    setCustomAmount('');
+                  }}
+                  className={`py-3 px-4 rounded-lg font-semibold transition-all ${
+                    donateAmount === amount && !customAmount
+                      ? 'bg-primary text-white'
+                      : 'bg-[#102216] border border-[#3b5443] text-white hover:border-primary'
+                  }`}
+                  disabled={isProcessing}
+                >
+                  {amount}€
+                </button>
+              ))}
+            </div>
+
+            {/* Montant personnalisé */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Ou entrez un montant personnalisé
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  value={customAmount}
+                  onChange={(e) => {
+                    setCustomAmount(e.target.value);
+                    setDonateAmount(0);
+                  }}
+                  placeholder="Montant personnalisé"
+                  className="w-full px-4 py-3 bg-[#102216] border border-[#3b5443] rounded-lg text-white focus:outline-none focus:border-primary"
+                  disabled={isProcessing}
+                  min="1"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">€</span>
+              </div>
+            </div>
+
+            {/* Récapitulatif */}
+            <div className="bg-[#102216] border border-[#3b5443] rounded-lg p-4 mb-6">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-300">Montant du don</span>
+                <span className="text-2xl font-bold text-primary">
+                  {customAmount || donateAmount}€
+                </span>
+              </div>
+            </div>
+
+            {/* Boutons */}
+            <div className="flex gap-3">
+              <Button
+                variant="ghost"
+                onClick={() => setShowDonateModal(false)}
+                className="flex-1"
+                disabled={isProcessing}
+              >
+                Annuler
+              </Button>
+              <Button
+                variant="primary"
+                onClick={processDonation}
+                className="flex-1"
+                disabled={isProcessing}
+              >
+                {isProcessing ? 'Traitement...' : 'Confirmer le Don'}
+              </Button>
+            </div>
+
+            {isProcessing && (
+              <p className="text-center text-primary text-sm mt-4">
+                Traitement de votre don en cours...
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
