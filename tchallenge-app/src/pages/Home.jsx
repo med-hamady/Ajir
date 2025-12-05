@@ -65,9 +65,11 @@ const Home = () => {
                     Rejoignez une communauté qui fait une réelle différence. Trouvez un défi et commencez votre parcours de solidarité aujourd'hui.
                   </h2>
                 </div>
-                <Button variant="primary" size="lg">
-                  Trouvez Votre Défi
-                </Button>
+                <Link to="/challenges">
+                  <Button variant="primary" size="lg">
+                    Trouvez Votre Défi
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
