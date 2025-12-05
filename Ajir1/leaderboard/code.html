@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leaderboard - TChallenge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 md:px-10 lg:px-20 py-3 sticky top-0 z-50 bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_543"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">TChallenge</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Challenges</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Leaderboard</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#111813] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-colors">
+<span class="truncate">Donate</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#28392e] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-opacity-80 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaTBNhCNybmIFNL5QVgKxPfsMe3TerQDSqp6AgepeERGvgLyc1NrzrQlS5WJS_--7N65VKJ-jlQUIuccOr72wZDd-9YTLeFTt48jQ7Be6LzSQiwcqAJT2eBWQb5F6DcYMubybVOfO6dRRP_aFBXvnYO02z24Y2tUvriQbjw7Qg-tDkmOTvzYp-oxAnwm68eYaPAU5aRw3cjpwQNfke9kohRFAZIh4T-gqhkxjaHYT1l9aVWtd2UIi-o1XwNN_uSkpZOjxyKb8zSug");'></div>
+</div>
+<button class="md:hidden flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#28392e] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="px-4 md:px-10 lg:px-20 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1">
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Classement Général</p>
+<p class="text-[#9db9a6] text-base font-normal leading-normal">See who is leading the charge in solidarity and humanitarian actions.</p>
+</div>
+</div>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Top Contributors</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+<!-- 2nd Place -->
+<div class="flex flex-col gap-3 pb-3 items-center justify-end">
+<div class="w-24 h-24 bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-[#C0C0C0]" data-alt="Profile picture of Marc Antoine" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOYkN9jPGrGhoIXcRJYBeTLkvnNpVUoeCn1eezVQbKoefSHAZPRceUqUepjtPZn9JElQIws9Pv_PZBJx8isFD-lRuSbDX5Eu7pw-fJAi6_XIgTDgdY5kuL7w8Q8OGX4C-FjM5t0uNWm5a9UVblYy40lQKf9p3X8NQ-mzXe1NPGtvHFD_T8irenw10xzVKeXgvYQMq3hfQtB81O7Ji6z6mTF7XbCCMbzv5--RffQ2Vf_NnrTe5eQubCq07FENrcQ36vuGsK-HVATRk");'></div>
+<div class="text-center">
+<p class="text-white text-base font-medium leading-normal">🥈 2nd Place: Marc Antoine</p>
+<p class="text-[#9db9a6] text-sm font-normal leading-normal">14,230 Points</p>
+</div>
+<div class="w-full bg-[#1c271f] h-20 rounded-lg flex items-center justify-center">
+<p class="text-[#C0C0C0] text-3xl font-bold">2</p>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="flex flex-col gap-4 rounded-lg bg-[#1c271f] p-4 shadow-[0_0_4px_rgba(0,0,0,0.1)] order-first lg:order-none">
+<div class="flex flex-col gap-4 items-center">
+<div class="w-32 h-32 bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-[#FFD700]" data-alt="Profile picture of Elodie Dubois" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsfH4wkBqmzoiFhyMWtEddmVq-bC6ktt7qpl-U28Z9MAXdFcc4jfyKQOzynpM8J_TTMShrNqWsGdhUvpwK6iFRMYzGi8GeSKvz79UZw09F-vVOEmCRHPcKQDVl_9VSoM3Z43BHz-dg34uivLZTDAZxgSFO8_j7E_5hsQziR4FocvpppzhFrYJ7FD360tFp_lI_HbHrkXwv7llgsL3OsVKmCh-8bHJjWa7HwfdYznug-gAldTlOGGdKV7fx0jlXFcuZJ-EP8MME_js");'></div>
+<div class="flex flex-col gap-1 text-center">
+<p class="text-[#FFD700] text-lg font-bold leading-normal">🥇 1st Place</p>
+<p class="text-white text-xl font-bold leading-tight">Elodie Dubois</p>
+<p class="text-[#9db9a6] text-base font-normal leading-normal">15,890 Points</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 flex-row-reverse bg-[#28392e] text-white text-sm font-medium leading-normal w-fit hover:bg-opacity-80 transition-colors">
+<span class="truncate">View Profile</span>
+</button>
+</div>
+<div class="w-full bg-[#1c271f] border-t border-white/10 h-28 rounded-b-lg flex items-center justify-center -m-4 mt-4">
+<p class="text-[#FFD700] text-5xl font-bold">1</p>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="flex flex-col gap-3 pb-3 items-center justify-end">
+<div class="w-24 h-24 bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-[#CD7F32]" data-alt="Profile picture of Sophie Lemaire" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbQy4wr306d0lPdyMXjbapIizqiJEH98NXucD-zISxiZwebWUs0mrSm7ge-L8zJiZfz4jcwYfsYSlBwLtWh4WO1etq7Uw-6vDkTFIviSTr9CmtqLG7XS-hLkJPWhbEpbuFE-jIPOqy9OKWqK5Jkre60eYlN58Z0YNisaer4WVK-xf3iskAdG84IwKJaPEtMEC6BcD9VF9S2nzCXjPZkJmg0KRB3c5Jbpi_QKTnuiSSVmzWPpovCvjhwlbMIEATvpCqLS73d0baOTk");'></div>
+<div class="text-center">
+<p class="text-white text-base font-medium leading-normal">🥉 3rd Place: Sophie Lemaire</p>
+<p class="text-[#9db9a6] text-sm font-normal leading-normal">13,990 Points</p>
+</div>
+<div class="w-full bg-[#1c271f] h-20 rounded-lg flex items-center justify-center">
+<p class="text-[#CD7F32] text-3xl font-bold">3</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row items-center justify-between gap-4 px-4 py-6">
+<div class="relative w-full lg:w-1/3">
+<input class="w-full h-10 px-4 pl-10 rounded-lg bg-[#28392e] text-white border-none focus:ring-2 focus:ring-primary" placeholder="Search for a user..." type="text"/>
+<div class="absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-white/50">search</span>
+</div>
+</div>
+<div class="flex items-center gap-2 p-1 bg-[#28392e] rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-sm font-medium text-white bg-primary/20">This Week</button>
+<button class="px-4 py-1.5 rounded-md text-sm font-medium text-white hover:bg-primary/10">This Month</button>
+<button class="px-4 py-1.5 rounded-md text-sm font-medium text-white hover:bg-primary/10">All Time</button>
+</div>
+</div>
+<div class="px-4 pb-4">
+<div class="overflow-hidden rounded-lg bg-[#1c271f]">
+<div class="flex flex-col">
+<div class="grid grid-cols-12 gap-4 px-6 py-3 text-[#9db9a6] font-medium text-sm border-b border-white/10">
+<div class="col-span-1 text-center">#</div>
+<div class="col-span-5">User</div>
+<div class="col-span-3 text-right">Points</div>
+<div class="col-span-3 text-right">Challenges</div>
+</div>
+<div class="divide-y divide-white/10">
+<!-- User Row -->
+<div class="grid grid-cols-12 gap-4 items-center px-6 py-3 text-white text-sm">
+<div class="col-span-1 text-center font-bold">4</div>
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="User avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCT3LdzO8P8HKLe6vOQkVKXR2apTGVWDehqye3-jgr3DhZGo5VU1se2iCXNekGefNaD65jG-q9zxPNGor4PfkKnaGeRWrxOG4x4cI65e9I8cbkdyXXsMPvHdnORejgDIyZlnWvQZLegSqaFCmuuMgsLVrJkTVKjkZ38T3oedV23f7dSM2CzFSA0hraCdO_OXAtjHaiJarEC04hVG4LFbJLjqrm5au2KsNbMhraNnYWtS3T97_vhCEmrY8-3BZl7RDPBkXwJXxOGkZs')"></div>
+<span>Lucas Moreau</span>
+</div>
+<div class="col-span-3 text-right font-medium">12,500</div>
+<div class="col-span-3 text-right text-[#9db9a6]">32</div>
+</div>
+<!-- Highlighted User Row -->
+<div class="grid grid-cols-12 gap-4 items-center px-6 py-3 text-white text-sm bg-primary/10 border-y-2 border-primary">
+<div class="col-span-1 text-center font-bold text-primary">5</div>
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="Current user avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3ieQzg-DgWz38uZpbxx6GyZe7oueAd5g-0oyNkkBI2H5H18PyKhLO9wXkKzjQfZqtYLfkjGeSy2vB0qJ_qIIECz-y7CDBP-lRFPdMETSHuxA3EfaEQmQWfq00JJjc2eB9GIv0PNWNfz2tqRChIby6ZPcLazO_LPreX20FBQls17DqiR0XVguWI4IG5714g8eH0Z-6UheDIh6Vss6sPHspwCT2bIwVyGYgtAD415NTbP_qaCKXa3uyCfiZkGn8TGfM6LaQO-PFBzk')"></div>
+<span class="font-bold">You</span>
+</div>
+<div class="col-span-3 text-right font-bold text-primary">12,110</div>
+<div class="col-span-3 text-right font-bold text-primary">29</div>
+</div>
+<!-- User Row -->
+<div class="grid grid-cols-12 gap-4 items-center px-6 py-3 text-white text-sm">
+<div class="col-span-1 text-center font-bold">6</div>
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="User avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChDHMZD-QZQv5LTjToowMihdxIhHOytzRnBDrvq8Vtjz0wmUQm4_B2qsdzcLwjcajTA2r0O39qZt3qgYYBIjB7KvPsK9j0ChT0TyEvMCViB3p3ByUwu-HsPN2KZU6z9Ua4iuXnBrBDJvLP8SCHsKnsaxTPetV5d9Uj3KucHjEdHFUhzMJwlSFGc1hmN8ibAyWMarnRp35qlR2Pw9qIoLiqFo9Y6ZmqHYhfrkSkRSSIfqJ0lNLgB2pWnMdjTj9_phW79veAuNYHllw')"></div>
+<span>Chloé Dubois</span>
+</div>
+<div class="col-span-3 text-right font-medium">11,980</div>
+<div class="col-span-3 text-right text-[#9db9a6]">28</div>
+</div>
+<!-- User Row -->
+<div class="grid grid-cols-12 gap-4 items-center px-6 py-3 text-white text-sm">
+<div class="col-span-1 text-center font-bold">7</div>
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="User avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDIhNDkHIjcp8Je9j99qg3XcbJ-Ipwp6_8drrcRDWfvf6AvrgQD4DNahtiyNo7q2EibJOQIzDHOsngrU8S058Et0M61hVXnrjsbWXhyw0Md4R1vIITjbOjMfRKQ9FzqSNSSiQMajixu5glYaT5ODK0qJSP83fJSAfOxx0Gwi-6v-LrqnAmcdpKueJGijd6tenfLt-AUYry-IV3fbQ5ULfOE2zn3bxPP6sPpDst2H0Cve92K6zjoJgcu_BdyHgqq4AOotkDNYKg0yg')"></div>
+<span>Arthur Petit</span>
+</div>
+<div class="col-span-3 text-right font-medium">11,540</div>
+<div class="col-span-3 text-right text-[#9db9a6]">27</div>
+</div>
+<!-- User Row -->
+<div class="grid grid-cols-12 gap-4 items-center px-6 py-3 text-white text-sm">
+<div class="col-span-1 text-center font-bold">8</div>
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" data-alt="User avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLBEtiOit1SRcgkldfeXVyD_3ovmqep2rD_jifrF5EpaHpXHA1qgormXAW1RNfI4kzjspH91Lgowwc-EB7wkxU1hNLXgfZZe9VRUTG3zILYukac4cUXZ-wNbJ1XBdsZXaqc3s_iy7P7heXRBtXlpPrPw0Ap_0YaOOBLtnwDwFioyD_kpvd59as0cv8d-ArCj-ht9AyYEtlMXLdq9gf9fpHW1beXPk3ZjReUjw0xVD4k7aiCZiHQaDFv4uA9vxwkvadG0ceV7OQHwo')"></div>
+<span>Manon Girard</span>
+</div>
+<div class="col-span-3 text-right font-medium">11,230</div>
+<div class="col-span-3 text-right text-[#9db9a6]">25</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

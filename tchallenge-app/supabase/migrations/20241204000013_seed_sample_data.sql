@@ -1,0 +1,121 @@
+-- Seed sample challenges (Note: These use placeholder user IDs - update after creating real users)
+INSERT INTO public.challenges (
+  title,
+  slug,
+  description,
+  full_description,
+  category,
+  image_url,
+  goal_type,
+  goal_amount,
+  current_amount,
+  unit,
+  start_date,
+  end_date,
+  status
+) VALUES
+  (
+    'Community Food Drive',
+    'community-food-drive',
+    'Help us collect non-perishable food items for local families in need. Your contribution can make a huge difference.',
+    'This challenge aims to collect 2,000 kg of non-perishable food items for local food banks and families in need. Every contribution, no matter how small, helps ensure that no one in our community goes hungry. Join us in making a real difference!',
+    'Solidarity',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuA8xz4kpvbBvDCdWtQLLKiWUSrfm_D0Nu3acH6bqsmp2MRb7cvOGoLvEANlOk0nFNc1ZJ2o_67znD68mK5UyhJaha8Bnfx2HzFlIYojoiMc5D6s26XrlNxqJ9ThV06LnNAvgoyF2FAcHNiE0yqcKUQdqWvkws9LD-QH_3U5c2iIWyOEy3mbPAaVHU4KM_BUHrpVr-Zr-Os8v09AEwOpQSouxA3s4Otl5dz4IXzfGsYVwxgYRjj2hRWITJNXZjsKKZ3hgDXn74xjIZc',
+    'items',
+    2000,
+    1500,
+    'kg',
+    NOW() - INTERVAL '30 days',
+    NOW() + INTERVAL '12 days',
+    'active'
+  ),
+  (
+    'Coastal Cleanup Day',
+    'coastal-cleanup-day',
+    'Join us for a day of cleaning our beautiful beaches. Let''s protect marine life and preserve our coastline.',
+    'Participate in our coastal cleanup initiative to remove plastic waste and debris from our beaches. Together, we can protect marine ecosystems and create a cleaner, healthier environment for everyone.',
+    'Environment',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuAnjHfzlIlKUrXRXbn4kYrpW8Q9blbgWxq8GZTF_111Kvyv83CFfcpprKgttc5yxLTBTEkUOYLX1MZQobqA4ciLtD8qwbo3RUD4ixc3ETWo3KIP__xbm4A6O7EIAPUUfhK1uvzjXH4VehQXd7m-He_uCKOauw25A6J-aQZFsMGlO-lP1vrwS3Is44jh8V15BthAzZwnNlJ8O_WgVQEr8GBOgchcqfoNQab4-ra66J2rQkWsz7h6GOjG9awyjpJj9pV0mhdBJcW_pbg',
+    'volunteers',
+    100,
+    40,
+    'volunteers',
+    NOW() + INTERVAL '3 days',
+    NOW() + INTERVAL '10 days',
+    'active'
+  ),
+  (
+    'Mentor a Student',
+    'mentor-a-student',
+    'Become a mentor and guide a young student. Share your knowledge and inspire the next generation of leaders.',
+    'Our mentorship program pairs experienced professionals with students seeking guidance. As a mentor, you''ll provide support, share insights, and help shape the future of young minds in our community.',
+    'Education',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuBW8BPE29SdEOTstE9YP_WcBTvFam08oYW-mFbNHQruyS4MU1rYDb4uLhh40nk4N8weDAteTuNl5qIFzndK7-WkNU0dJn0IzXiUfkKN4Y0aIVHt-5zsRugboAMP477ABvEZGhj2JOdHOhMbFinxBotw1Y_7FdRXncqBHYRF8U0bkgyLJdTC7Niz93MkbucpZcomb9vNDp2B6wOYKzRdldJ13o3Oq3w-UDlpzYcIDJIz6B_N2XUSqHMIw95T22drLGm90PK26uzovlg',
+    'volunteers',
+    50,
+    30,
+    'mentors',
+    NOW() - INTERVAL '60 days',
+    NULL,
+    'active'
+  ),
+  (
+    'Forests for the Future Challenge',
+    'forests-for-the-future',
+    'Help us reforest 10,000 hectares of land to combat climate change and restore vital ecosystems.',
+    'This challenge is a call to action for everyone passionate about our planet''s future. Deforestation is a critical issue, contributing significantly to climate change and biodiversity loss. The "Forests for the Future" initiative aims to reverse this trend by planting trees in areas that need them most. By joining, you''re not just planting a tree; you''re helping to restore habitats for countless species, improve air and water quality, and provide sustainable livelihoods for local communities.',
+    'Environment',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuC8ILNJ3LXQ_K-wiY_J4nK6DCQbCpA4c9mkOamrU8u6MEBycbOMGLfDT3Dvu3nEBZNbodgGmpdrrQwvOfMuDnNyBF-nSs8kDPgOBGRtLh__GZ3eooAcnRs2ILT2jiKN90M0YZ1ytfNhXPjFDqBjNufE4MyBbFstAeFccroH0GYMswgNaPGXoFr4xX8jUaWVaZiHcIxv4E5zd3ERMXzepKLrp99eyyiuh11Ly3t_xsd6oz4r4eqYNVYfHs93eMQgVn03v4wut3G0fGQ',
+    'funds',
+    10000,
+    7850,
+    '€',
+    NOW() - INTERVAL '45 days',
+    NOW() + INTERVAL '15 days',
+    'active'
+  ),
+  (
+    'Back to School Supplies',
+    'back-to-school-supplies',
+    'Donate school supplies to underprivileged children and help them start the school year with confidence.',
+    'Every child deserves the tools they need to succeed in school. This campaign collects notebooks, pens, backpacks, and other essential supplies for students from low-income families.',
+    'Education',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuBW8BPE29SdEOTstE9YP_WcBTvFam08oYW-mFbNHQruyS4MU1rYDb4uLhh40nk4N8weDAteTuNl5qIFzndK7-WkNU0dJn0IzXiUfkKN4Y0aIVHt-5zsRugboAMP477ABvEZGhj2JOdHOhMbFinxBotw1Y_7FdRXncqBHYRF8U0bkgyLJdTC7Niz93MkbucpZcomb9vNDp2B6wOYKzRdldJ13o3Oq3w-UDlpzYcIDJIz6B_N2XUSqHMIw95T22drLGm90PK26uzovlg',
+    'items',
+    500,
+    320,
+    'supplies',
+    NOW() - INTERVAL '20 days',
+    NOW() + INTERVAL '8 days',
+    'active'
+  ),
+  (
+    'Mental Health Awareness Week',
+    'mental-health-awareness-week',
+    'Join us in raising awareness about mental health and reducing stigma in our community.',
+    'Mental health matters! Participate in workshops, share resources, and help create a supportive environment for those struggling with mental health challenges.',
+    'Health',
+    NULL,
+    'volunteers',
+    200,
+    85,
+    'participants',
+    NOW() + INTERVAL '7 days',
+    NOW() + INTERVAL '14 days',
+    'upcoming'
+  )
+ON CONFLICT (slug) DO NOTHING;
+
+-- Seed sample rewards
+INSERT INTO public.rewards (name, description, image_url, points_cost, stock_quantity, category, is_available) VALUES
+  ('TChallenge T-Shirt', 'Official TChallenge organic cotton t-shirt', NULL, 500, 100, 'physical', true),
+  ('Eco-Friendly Water Bottle', 'Reusable stainless steel water bottle', NULL, 300, 150, 'physical', true),
+  ('TChallenge Tote Bag', 'Canvas tote bag with TChallenge logo', NULL, 200, 200, 'physical', true),
+  ('Digital Certificate of Recognition', 'Personalized certificate celebrating your contributions', NULL, 100, NULL, 'digital', true),
+  ('10% Discount at Partner Store', 'Exclusive discount code for partner eco-stores', NULL, 250, NULL, 'discount', true),
+  ('Coffee Shop Voucher', '€10 voucher for local sustainable coffee shop', NULL, 400, 50, 'discount', true),
+  ('Tree Planting Certificate', 'Have a tree planted in your name', NULL, 600, NULL, 'experience', true),
+  ('VIP Event Access', 'Access to exclusive TChallenge community events', NULL, 1000, 30, 'experience', true),
+  ('Premium Badge Pack', 'Unlock exclusive profile badges', NULL, 150, NULL, 'digital', true),
+  ('Local Artisan Products', 'Handmade products from local artisans', NULL, 800, 25, 'physical', true)
+ON CONFLICT DO NOTHING;
